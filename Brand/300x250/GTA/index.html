@@ -1,0 +1,419 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="ad.size" content="width=300,height=250" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1 user-scalable=no"
+    />
+
+    <script type="text/javascript">
+      var clickTag = "";
+    </script>
+
+    <style type="text/css">
+      html,
+      body {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #222;
+      }
+      body::before,
+      body::after {
+        display: block;
+        content: "";
+        flex: 2;
+      }
+      body::after {
+        flex: 3;
+      }
+      img,
+      span,
+      svg,
+      div.text-element {
+        border: none;
+        position: absolute;
+        display: block;
+        top: 0;
+      }
+
+      [class*="-scene"] {
+        opacity: 0;
+      }
+
+      [data-scene="0"] .-scene0,
+      [data-scene="1"] .-scene1,
+      [data-scene="2"] .-scene2 {
+        opacity: 1;
+        transform: none;
+      }
+
+      span > span,
+      span > img {
+        opacity: 1;
+      }
+
+      #canvas {
+        display: block;
+        margin: 0 auto;
+        overflow: hidden;
+        position: relative;
+        flex: none;
+        width: 300px;
+        height: 250px;
+        box-shadow: 0 0 160px rgba(0, 0, 0, 0.3), 0 10px 30px rgba(0, 0, 0, 0.3);
+        background: #fff;
+      }
+      #canvas:after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 9999999;
+        transform: translateZ(1px);
+        box-shadow: 0 0 0 1px #ccc inset;
+        pointer-events: none;
+      }
+
+      .frame {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 1s ease;
+      }
+
+      /* Fade in animation for initial elements */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeInSlideUp {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0px);
+        }
+      }
+
+      .fadeInSlideUp {
+        opacity: 0;
+      }
+
+      .fadeIn {
+        opacity: 0;
+      }
+
+      .text1,
+      .shadow {
+        opacity: 0;
+      }
+      [data-scene="0"] .-scene0 .text1,
+      [data-scene="0"] .-scene0 .shadow {
+        animation: fadeIn 250ms ease-in forwards;
+        animation-delay: 1.25s;
+      }
+
+      [data-scene="0"] .-scene0 .logo {
+        animation: fadeIn 250ms ease-in forwards;
+        animation-delay: 0.75s;
+      }
+
+      [data-scene="0"] .-scene0 .fadeIn {
+        animation: fadeInSlideUp 400ms ease-out 300ms forwards;
+      }
+
+      /* Diagonal swipe transition */
+      .diagonal-swipe {
+        position: absolute;
+        top: -101px;
+        left: -181%;
+        width: 131.42%;
+        height: 240.42%;
+        background: white;
+        transform: rotate(-45deg);
+        transform-origin: center center;
+        z-index: 10;
+        transition: left 0.8s ease-in-out;
+        z-index: 0;
+      }
+
+      [data-scene="1"] .diagonal-swipe,
+      [data-scene="2"] .diagonal-swipe {
+        left: 8%;
+      }
+
+      /* Text animations */
+      .text-element {
+        font-family: Arial, sans-serif;
+        color: #333;
+        opacity: 0;
+        z-index: 9;
+      }
+
+      @keyframes slideInFromRight {
+        from {
+          opacity: 0;
+          transform: translateX(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      [data-scene="1"] .-scene1 .logo-2 {
+        animation: fadeIn 200ms ease-in forwards;
+        animation-delay: 200ms;
+      }
+
+      [data-scene="2"] .-scene2 .logo-2 {
+        opacity: 1;
+      }
+
+      [data-scene="1"] .-scene1 .text2,
+      [data-scene="2"] .-scene2 .text2 {
+        animation: fadeIn 200ms ease-in forwards;
+        animation-delay: 400ms;
+      }
+
+      /* YMCA Logo styles */
+      .ymca-logo {
+        opacity: 0;
+        z-index: 9;
+        top: 187px;
+        left: 150px;
+      }
+
+      .logo-2 {
+        opacity: 0;
+        top: 76%;
+        left: 87px;
+        width: 40%;
+      }
+
+      .text2 {
+        opacity: 0;
+      }
+
+      .bg-img-corner {
+        z-index: 9;
+        margin-top: -14px;
+      }
+
+      .bg-image {
+        width: 100%;
+        height: 100%;
+      }
+
+      .cta-btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 10px);
+        border: none;
+        color: white;
+        background: #ac1236;
+        letter-spacing: 1px;
+        padding: 8px 16px;
+        font-size: 12px;
+        font-family: Arial, sans-serif;
+        cursor: pointer;
+        z-index: 15;
+        width: 680px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        clip-path: polygon(90% 0%, 100% 50%, 90% 100%, 0% 100%, 0 50%, 0% 0%);
+        opacity: 0;
+      }
+
+      /* CTA Button Animations */
+      @keyframes ctaButtonGrow {
+        from {
+          width: 0px;
+          opacity: 1;
+        }
+        to {
+          width: 180px;
+          opacity: 1;
+        }
+      }
+
+      @keyframes ctaTextFadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .cta-text {
+        opacity: 0;
+      }
+
+      [data-scene="2"] .-scene2 .cta-btn {
+        animation: ctaButtonGrow 600ms ease-out 600ms forwards;
+      }
+
+      [data-scene="2"] .-scene2 .cta-text {
+        animation: ctaTextFadeIn 300ms ease-in forwards;
+        animation-delay: 1s;
+      }
+
+      @keyframes zoomIn {
+        from {
+          transform: scale(1);
+        }
+
+        to {
+          transform: scale(1.1);
+        }
+      }
+
+      .zoom-bg {
+        transform-origin: center center;
+        will-change: transform;
+        transform: scale(1);
+        animation: zoomIn 12s ease forwards;
+      }
+    </style>
+  </head>
+  <body>
+    <a
+      id="canvas"
+      href="javascript:window.open(window.clickTag)"
+      data-frames="[0.5,0.5,0.1]"
+      data-duration="10000"
+      data-iterations="1"
+    >
+      <div class="frame -scene0">
+        <img src="./assets/BG.jpg" class="bg-image zoom-bg" />
+        <img
+          src="./assets/scene1-text.png"
+          style="top: 50%; transform: translateY(-50%); z-index: 2"
+          alt=""
+          class="text1"
+        />
+        <img
+          src="./assets/text-shadow.png"
+          style="z-index: 1; top: 54px"
+          class="shadow"
+          alt=""
+        />
+        <img
+          src="./assets/bottom-right-corner.png"
+          class="fadeIn bg-img-corner"
+          alt=""
+        />
+        <img src="./assets/Asset373.png" class="ymca-logo logo" alt="" />
+      </div>
+
+      <div class="diagonal-swipe"></div>
+
+      <div class="frame -scene1 -scene2">
+        <img src="./assets/test-ymca-coloured.jpg" class="logo-2" alt="" />
+        <div class="frame -scene1">
+          <img
+            src="./assets/scene2-text-new.png"
+            style="width: 75%; top: 33%; left: 13%"
+            alt=""
+          />
+        </div>
+        <div class="frame -scene2">
+          <img
+            src="./assets/test-text.png"
+            style="width: 60%; top: 28%"
+            alt=""
+          />
+          <button class="cta-btn">
+            <img
+              class="cta-text"
+              src="./assets/cta-text-new.png"
+              style="top: 8px; left: 16px; width: 80%"
+              alt=""
+            />
+          </button>
+        </div>
+      </div>
+    </a>
+
+    <script>
+      !(function () {
+        var s, y, m, b, o, l, i, c;
+        function u(e) {
+          if (((s = document.getElementById(e)), window.top === window)) {
+            var t = document.head
+              .querySelector('meta[name="ad.size"]')
+              .content.split(",");
+            (s.style.width = parseInt(t[0].split("=")[1], 10) + "px"),
+              (s.style.height = parseInt(t[1].split("=")[1], 10) + "px");
+          }
+          (b = o = parseInt(s.getAttribute("data-iterations"))),
+            this.reScale(
+              JSON.parse(s.getAttribute("data-frames")),
+              parseInt(s.getAttribute("data-duration"))
+            ),
+            (i = m.length - 1),
+            this.animate();
+        }
+        (u.prototype.reScale = function (t, e) {
+          l = o > 0 ? e / o : e;
+          var a = t.reduce(function (t, e) {
+            return t + e;
+          }, 0);
+          m = t.map(function (t) {
+            return (t / a) * l;
+          });
+        }),
+          (u.prototype.goToFrame = function (e) {
+            this.pause(), (b = 0), (i = e), s.setAttribute("data-scene", e);
+          }),
+          (u.prototype.next = function () {
+            return ++i !== m.length || ((i = 0), b--)
+              ? (s.setAttribute("data-scene", i), i)
+              : ((b = o - 1), (i = -1));
+          }),
+          (u.prototype.animate = function () {
+            -1 !== this.next() &&
+              (y = window.setTimeout(this.animate.bind(this), m[i]));
+          }),
+          (u.prototype.pause = function () {
+            y && clearTimeout(y);
+          }),
+          (c = function () {
+            (window.banner = new u("canvas")),
+              document.body.setAttribute("class", "loaded");
+          }),
+          "loading" !== document.readyState
+            ? c()
+            : document.addEventListener("DOMContentLoaded", c);
+      })();
+    </script>
+  </body>
+</html>
