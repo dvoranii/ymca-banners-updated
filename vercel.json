@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/Brand/300x250/assets/(.*)",
+      "destination": "/Brand/300x250/GTA/assets/$1"
+    },
+    {
       "source": "/:brand/:size/:city/",
       "destination": "/:brand/:size/:city/index.html"
     },
@@ -9,8 +13,8 @@
       "destination": "/:brand/:size/:city/index.html"
     },
     {
-      "source": "/:brand/:size/:city/assets/:filename",
-      "destination": "/:brand/:size/:city/assets/:filename"
+      "source": "/:brand/:size/:city/assets/(.*)",
+      "destination": "/:brand/:size/:city/assets/$1"
     }
   ]
 }
