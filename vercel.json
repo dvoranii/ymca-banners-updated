@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/:brand/:size/:city/",
+      "destination": "/:brand/:size/:city/index.html"
+    },
+    {
+      "source": "/:brand/:size/:city",
+      "destination": "/:brand/:size/:city/index.html"
+    },
+    {
+      "source": "/:brand/:size/:city/assets/:filename",
+      "destination": "/:brand/:size/:city/assets/:filename"
+    }
+  ]
+}
