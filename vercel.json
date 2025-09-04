@@ -11,10 +11,6 @@
     {
       "source": "/:brand/:size/:city/assets/:filename",
       "destination": "/:brand/:size/:city/assets/:filename"
-    },
-    {
-      "source": "/:brand/:size/assets/:filename",
-      "destination": "/:brand/:size/assets/:filename"
     }
   ]
 }
