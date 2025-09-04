@@ -1,16 +1,36 @@
 {
+  "functions": {
+    "app/**": {
+      "runtime": "nodejs18.x"
+    }
+  },
   "rewrites": [
     {
-      "source": "/:brand/:size/:city/",
-      "destination": "/:brand/:size/:city/index.html"
+      "source": "/Brand/300x250/GTA/assets/(.*)",
+      "destination": "/Brand/300x250/GTA/assets/$1"
     },
     {
-      "source": "/:brand/:size/:city",
-      "destination": "/:brand/:size/:city/index.html"
+      "source": "/Brand/300x250/GTA/?",
+      "destination": "/Brand/300x250/GTA/index.html"
     },
     {
-      "source": "/:brand/:size/:city/assets/:filename",
-      "destination": "/:brand/:size/:city/assets/:filename"
+      "source": "/:brand/:size/:city/assets/(.*)",
+      "destination": "/:brand/:size/:city/assets/$1"
+    },
+    {
+      "source": "/:brand/:size/:city/?",
+      "destination": "/:brand/:size/:city/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
+      ]
     }
   ]
 }
