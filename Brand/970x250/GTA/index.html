@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <meta name="ad.size" content="width=300,height=250" />
+    <meta name="ad.size" content="width=970,height=250" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1 user-scalable=no"
@@ -95,7 +95,7 @@
         justify-content: center;
         align-items: center;
         opacity: 0;
-        transition: opacity 1s ease;
+        transition: opacity 1.5s ease;
       }
 
       /* Fade in animation for initial elements */
@@ -134,7 +134,7 @@
       [data-scene="0"] .-scene0 .text1,
       [data-scene="0"] .-scene0 .shadow {
         animation: fadeIn 250ms ease-in forwards;
-        animation-delay: 1.25s;
+        animation-delay: 1.85s;
       }
 
       [data-scene="0"] .-scene0 .logo {
@@ -149,12 +149,12 @@
       /* Diagonal swipe transition */
       .diagonal-swipe {
         position: absolute;
-        top: -101px;
-        left: -181%;
-        width: 131.42%;
-        height: 240.42%;
+        top: -266px;
+        left: -211%;
+        width: 243.42%;
+        height: 660%;
         background: white;
-        transform: rotate(-45deg);
+        transform: rotate(45deg);
         transform-origin: center center;
         z-index: 10;
         transition: left 0.8s ease-in-out;
@@ -163,7 +163,7 @@
 
       [data-scene="1"] .diagonal-swipe,
       [data-scene="2"] .diagonal-swipe {
-        left: 8%;
+        left: -72%;
       }
 
       /* Text animations */
@@ -203,10 +203,9 @@
       /* YMCA Logo styles */
       .ymca-logo {
         opacity: 0;
-        width: 112px;
         z-index: 9;
-        top: 186px;
-        left: 164px;
+        top: 175px;
+        right: 16px;
       }
 
       .text2 {
@@ -215,12 +214,16 @@
 
       .logo-2 {
         opacity: 0;
-        top: 75%;
-        width: 35%;
+        top: 28%;
+        right: 8px;
+        width: 24%;
       }
+
       .bg-img-corner {
         z-index: 9;
-        margin-top: -14px;
+        top: -162px;
+        left: 61%;
+        width: 50%;
       }
 
       .bg-image {
@@ -230,8 +233,8 @@
 
       .cta-btn {
         position: absolute;
-        top: 50%;
-        left: 50%;
+        top: 48%;
+        left: 43%;
         transform: translate(-50%, 10px);
         border: none;
         color: white;
@@ -243,7 +246,7 @@
         cursor: pointer;
         z-index: 15;
         width: 680px;
-        height: 32px;
+        height: 38px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -258,7 +261,7 @@
           opacity: 1;
         }
         to {
-          width: 180px;
+          width: 280px;
           opacity: 1;
         }
       }
@@ -308,53 +311,58 @@
       id="canvas"
       href="javascript:window.open(window.clickTag)"
       data-frames="[0.5,0.5,0.1]"
-      data-duration="10000"
+      data-duration="12000"
       data-iterations="1"
     >
       <div class="frame -scene0">
-        <img src="./assets/BG.jpg" class="bg-image zoom-bg" />
         <img
-          src="./assets/scene1-text.png"
-          style="top: 50%; transform: translateY(-50%); z-index: 2"
+          src="/Brand/970x250/GTA/assets/bg-resized-new.jpg"
+          class="bg-image zoom-bg"
+        />
+        <img
+          src="/Brand/970x250/GTA/scene1-text-shadow(1).png"
+          style="width: 50%; top: 50%; transform: translateY(-50%); z-index: 2"
           alt=""
           class="text1"
         />
         <img
-          src="./assets/text-shadow.png"
-          style="z-index: 1; top: 54px"
-          class="shadow"
-          alt=""
-        />
-        <img
-          src="./assets/bottom-right-corner.png"
+          src="/Brand/970x250/GTA/bottom-right-corner.png"
           class="fadeIn bg-img-corner"
           alt=""
         />
-        <img src="./assets/Asset443.png" class="ymca-logo logo" alt="" />
+        <img
+          src="/Brand/970x250/GTA/Asset373.png"
+          class="ymca-logo logo"
+          alt=""
+        />
       </div>
 
       <div class="diagonal-swipe"></div>
 
       <div class="frame -scene1 -scene2">
-        <img src="./assets/shine-on-logo-colour.png" class="logo-2" alt="" />
+        <img
+          src="/Brand/970x250/GTA/test-ymca-coloured.png"
+          class="logo-2"
+          alt=""
+        />
         <div class="frame -scene1">
           <img
-            src="./assets/scene2-text-new.png"
-            style="width: 75%; top: 33%; left: 13%"
+            src="/Brand/970x250/GTA/scene2-text.png"
+            style="top: 48%; left: 68px; width: 64%"
             alt=""
           />
         </div>
         <div class="frame -scene2">
           <img
-            src="./assets/test-text.png"
-            style="width: 60%; top: 28%"
+            src="/Brand/970x250/GTA/scene3-text(1).png"
+            style="top: 31%; left: 177px; width: 50%"
             alt=""
           />
           <button class="cta-btn">
             <img
               class="cta-text"
-              src="./assets/cta-text-new.png"
-              style="top: 8px; left: 16px; width: 80%"
+              src="/Brand/970x250/GTA/cta-text-new.png"
+              style="top: 6px; left: 18px; width: 224px"
               alt=""
             />
           </button>
